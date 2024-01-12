@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/daeson_new_yoonwin_1.js"></script>
+        <script src="data/dokdo_urittang_2.js"></script>
+        <script src="data/daeson_new_leewin_3.js"></script>
+        <script src="data/jamjung_4.js"></script>
+        <script>
+        var map = L.map('map', {
+            doubleClickZoom: false, zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[35.32915305070866,125.6924890197185],[37.931477701404326,130.87065155621724]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_GoogleMaps_0');
+        map.getPane('pane_GoogleMaps_0').style.zIndex = 400;
+        var layer_GoogleMaps_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleMaps_0',
+            opacity: 1.0,
+            attribution: '',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_GoogleMaps_0;
+        map.addLayer(layer_GoogleMaps_0);
+        function pop_daeson_new_yoonwin_1(feature, layer) {
+var popupContent = '<table align="center">\
+			<thead color="white"; height="30px" bgcolor="#34696d"; style="font-size:18px; font-family:맑은 고딕; ">\
+			        <tr align=center>\
+			        <td colspan="2" style="color:white; font-size:25; border-top-right-radius:10px; border-top-left-radius:10px;" >' + (feature.properties['읍면동명'] !== null ? autolinker.link(feature.properties['읍면동명'].toLocaleString()) : '') + '</td>\
+					</tr>\
+					</thead>\
+					<tbody>\
+                         <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">시도</th>\
+                        <td td align="center">' + (feature.properties['시도'] !== null ? autolinker.link(feature.properties['시도'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr  bgcolor="#fdf6e3">\
+                        <th scope="row">시군구</th>\
+                        <td td align="center">' + (feature.properties['시군구'] !== null ? autolinker.link(feature.properties['시군구'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">개정선거구</th>\
+                        <td td align="center">' + (feature.properties['개정선거구'] !== null ? autolinker.link(feature.properties['개정선거구'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">선거구결과</th>\
+                        <td td align="center">' + (feature.properties['선거구결과'] !== null ? autolinker.link(feature.properties['선거구결과'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">투표수</th>\
+                        <td td align="center">' + (feature.properties['투표수'] !== null ? autolinker.link(feature.properties['투표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">1.득표수</th>\
+                        <td td align="center">' + (feature.properties['1.득표수'] !== null ? autolinker.link(feature.properties['1.득표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">2.득표수</th>\
+                        <td td align="center">' + (feature.properties['2.득표수'] !== null ? autolinker.link(feature.properties['2.득표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">3.득표수</th>\
+                        <td td align="center">' + (feature.properties['3.득표수'] !== null ? autolinker.link(feature.properties['3.득표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">1.득표율</th>\
+                        <td td align="center">' + (feature.properties['1.득표율'] !== null ? autolinker.link(feature.properties['1.득표율'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">2.득표율</th>\
+                        <td td align="center">' + (feature.properties['2.득표율'] !== null ? autolinker.link(feature.properties['2.득표율'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">3.득표율</th>\
+                        <td td align="center">' + (feature.properties['3.득표율'] !== null ? autolinker.link(feature.properties['3.득표율'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">시군구결과</th>\
+                        <td td align="center">' + (feature.properties['시군구결과'] !== null ? autolinker.link(feature.properties['시군구결과'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+					</tbody>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_daeson_new_yoonwin_1_0(feature) {
+            if (feature.properties['q2wHide_승자 득표'] >= 0.400000 && feature.properties['q2wHide_승자 득표'] <= 0.500000 ) {
+                return {
+                pane: 'pane_daeson_new_yoonwin_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(255,134,148,0.9725490196078431)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.500000 && feature.properties['q2wHide_승자 득표'] <= 0.600000 ) {
+                return {
+                pane: 'pane_daeson_new_yoonwin_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(235,101,111,0.9803921568627451)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.600000 && feature.properties['q2wHide_승자 득표'] <= 0.700000 ) {
+                return {
+                pane: 'pane_daeson_new_yoonwin_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(216,67,74,0.9882352941176471)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.700000 && feature.properties['q2wHide_승자 득표'] <= 0.800000 ) {
+                return {
+                pane: 'pane_daeson_new_yoonwin_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(196,33,37,0.9921568627450981)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.800000 && feature.properties['q2wHide_승자 득표'] <= 0.869295 ) {
+                return {
+                pane: 'pane_daeson_new_yoonwin_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(176,0,0,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_daeson_new_yoonwin_1');
+        map.getPane('pane_daeson_new_yoonwin_1').style.zIndex = 401;
+        map.getPane('pane_daeson_new_yoonwin_1').style['mix-blend-mode'] = 'normal';
+        var layer_daeson_new_yoonwin_1 = new L.geoJson(json_daeson_new_yoonwin_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_daeson_new_yoonwin_1',
+            layerName: 'layer_daeson_new_yoonwin_1',
+            pane: 'pane_daeson_new_yoonwin_1',
+            onEachFeature: pop_daeson_new_yoonwin_1,
+            style: style_daeson_new_yoonwin_1_0,
+        });
+        bounds_group.addLayer(layer_daeson_new_yoonwin_1);
+        map.addLayer(layer_daeson_new_yoonwin_1);
+        function pop_dokdo_urittang_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">동해</th>\
+                        <td>' + (feature.properties['동해'] !== null ? autolinker.link(feature.properties['동해'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_dokdo_urittang_2_0() {
+            return {
+                pane: 'pane_dokdo_urittang_2',
+                opacity: 1,
+                color: 'rgba(126,214,234,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(126,214,234,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_dokdo_urittang_2');
+        map.getPane('pane_dokdo_urittang_2').style.zIndex = 402;
+        map.getPane('pane_dokdo_urittang_2').style['mix-blend-mode'] = 'normal';
+        var layer_dokdo_urittang_2 = new L.geoJson(json_dokdo_urittang_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_dokdo_urittang_2',
+            layerName: 'layer_dokdo_urittang_2',
+            pane: 'pane_dokdo_urittang_2',
+            onEachFeature: pop_dokdo_urittang_2,
+            style: style_dokdo_urittang_2_0,
+        });
+        bounds_group.addLayer(layer_dokdo_urittang_2);
+        map.addLayer(layer_dokdo_urittang_2);
+        function pop_daeson_new_leewin_3(feature, layer) {
+var popupContent = '<table align="center">\
+			<thead color="white"; height="30px" bgcolor="#34696d"; style="font-size:18px; font-family:맑은 고딕; ">\
+			        <tr align=center>\
+			        <td colspan="2" style="color:white; font-size:25; border-top-right-radius:10px; border-top-left-radius:10px;" >' + (feature.properties['읍면동명'] !== null ? autolinker.link(feature.properties['읍면동명'].toLocaleString()) : '') + '</td>\
+					</tr>\
+					</thead>\
+					<tbody>\
+                         <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">시도</th>\
+                        <td td align="center">' + (feature.properties['시도'] !== null ? autolinker.link(feature.properties['시도'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr  bgcolor="#fdf6e3">\
+                        <th scope="row">시군구</th>\
+                        <td td align="center">' + (feature.properties['시군구'] !== null ? autolinker.link(feature.properties['시군구'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">개정선거구</th>\
+                        <td td align="center">' + (feature.properties['개정선거구'] !== null ? autolinker.link(feature.properties['개정선거구'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">선거구결과</th>\
+                        <td td align="center">' + (feature.properties['선거구결과'] !== null ? autolinker.link(feature.properties['선거구결과'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">투표수</th>\
+                        <td td align="center">' + (feature.properties['투표수'] !== null ? autolinker.link(feature.properties['투표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">1.득표수</th>\
+                        <td td align="center">' + (feature.properties['1.득표수'] !== null ? autolinker.link(feature.properties['1.득표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">2.득표수</th>\
+                        <td td align="center">' + (feature.properties['2.득표수'] !== null ? autolinker.link(feature.properties['2.득표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">3.득표수</th>\
+                        <td td align="center">' + (feature.properties['3.득표수'] !== null ? autolinker.link(feature.properties['3.득표수'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">1.득표율</th>\
+                        <td td align="center">' + (feature.properties['1.득표율'] !== null ? autolinker.link(feature.properties['1.득표율'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">2.득표율</th>\
+                        <td td align="center">' + (feature.properties['2.득표율'] !== null ? autolinker.link(feature.properties['2.득표율'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#eee8d5" border-color="inherit";>\
+                        <th scope="row">3.득표율</th>\
+                        <td td align="center">' + (feature.properties['3.득표율'] !== null ? autolinker.link(feature.properties['3.득표율'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr bgcolor="#fdf6e3">\
+                        <th scope="row">시군구결과</th>\
+                        <td td align="center">' + (feature.properties['시군구결과'] !== null ? autolinker.link(feature.properties['시군구결과'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+					</tbody>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_daeson_new_leewin_3_0(feature) {
+            if (feature.properties['q2wHide_승자 득표'] >= 0.400000 && feature.properties['q2wHide_승자 득표'] <= 0.500000 ) {
+                return {
+                pane: 'pane_daeson_new_leewin_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(152,187,235,0.9725490196078431)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.500000 && feature.properties['q2wHide_승자 득표'] <= 0.600000 ) {
+                return {
+                pane: 'pane_daeson_new_leewin_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(118,162,210,0.9803921568627451)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.600000 && feature.properties['q2wHide_승자 득표'] <= 0.700000 ) {
+                return {
+                pane: 'pane_daeson_new_leewin_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(85,136,185,0.9882352941176471)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.700000 && feature.properties['q2wHide_승자 득표'] <= 0.800000 ) {
+                return {
+                pane: 'pane_daeson_new_leewin_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(51,110,159,0.9921568627450981)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['q2wHide_승자 득표'] >= 0.800000 && feature.properties['q2wHide_승자 득표'] <= 0.926959 ) {
+                return {
+                pane: 'pane_daeson_new_leewin_3',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 0.8,
+                fillColor: 'rgba(17,85,134,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_daeson_new_leewin_3');
+        map.getPane('pane_daeson_new_leewin_3').style.zIndex = 403;
+        map.getPane('pane_daeson_new_leewin_3').style['mix-blend-mode'] = 'normal';
+        var layer_daeson_new_leewin_3 = new L.geoJson(json_daeson_new_leewin_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_daeson_new_leewin_3',
+            layerName: 'layer_daeson_new_leewin_3',
+            pane: 'pane_daeson_new_leewin_3',
+            onEachFeature: pop_daeson_new_leewin_3,
+            style: style_daeson_new_leewin_3_0,
+        });
+        bounds_group.addLayer(layer_daeson_new_leewin_3);
+        map.addLayer(layer_daeson_new_leewin_3);
+        function pop_jamjung_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADM_DR_NM'] !== null ? autolinker.link(feature.properties['ADM_DR_NM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['BASE_DATE'] !== null ? autolinker.link(feature.properties['BASE_DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ADM_DR_CD'] !== null ? autolinker.link(feature.properties['ADM_DR_CD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SIGUNGU_CD'] !== null ? autolinker.link(feature.properties['SIGUNGU_CD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['정당'] !== null ? autolinker.link(feature.properties['정당'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['path'] !== null ? autolinker.link(feature.properties['path'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['SIGUNGU_NM'] !== null ? autolinker.link(feature.properties['SIGUNGU_NM'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['cart'] !== null ? autolinker.link(feature.properties['cart'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_jamjung_4_0() {
+            return {
+                pane: 'pane_jamjung_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: false,
+            }
+        }
+        map.createPane('pane_jamjung_4');
+        map.getPane('pane_jamjung_4').style.zIndex = 404;
+        map.getPane('pane_jamjung_4').style['mix-blend-mode'] = 'normal';
+        var layer_jamjung_4 = new L.geoJson(json_jamjung_4, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_jamjung_4',
+            layerName: 'layer_jamjung_4',
+            pane: 'pane_jamjung_4',
+            onEachFeature: pop_jamjung_4,
+            style: style_jamjung_4_0,
+        });
+        bounds_group.addLayer(layer_jamjung_4);
+        map.addLayer(layer_jamjung_4);
+        setBounds();
+        </script>
+    </body>
+</html>
